@@ -45,28 +45,28 @@ export class ShareSessionService {
     if (!session) {
       return {
         "status": false,
-        "message": `User Not Found By #Refid${ref_id}`,
+        "message": `Sessoion Not Found By Refid:${ref_id}`,
         "data": null,
       }
     }
     session.status = 'success';
     const updatesSession = await this.shareSessionRepository.save(session);
-    // const user = await this.userRepository.findOne({
-    //  where: {
-    //   id:updatesSession.user_id
-    //  } 
-    // });
+    const user = await this.userRepository.findOne({
+     where: {
+      id:updatesSession.user_id
+     } 
+    });
 
-    // const company = await this.companyRepository.findOne({
-    //   where: {
-    //    id:updatesSession.company_id
-    //   } 
-    //  });
+    const company = await this.companyRepository.findOne({
+      where: {
+       id:updatesSession.company_id
+      } 
+     });
 
-    // company.avlShares=company.avlShares - updatesSession.share_no 
-    // await this.companyRepository.save(company);
+    company.avlShares=company.avlShares - updatesSession.share_no 
+    await this.companyRepository.save(company);
 
-    // await this.ownershipRepository.save({ sharesOwned: updatesSession.share_no, user: user, company: company });
+    await this.ownershipRepository.save({ sharesOwned: updatesSession.share_no, user: user, company: company });
 
     return {
       "status": true,
