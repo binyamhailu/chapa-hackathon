@@ -120,7 +120,11 @@ export class UsersService {
         "data": null,
       }
     }
-    return user
+    return    {
+      status: true,
+      message: `User Fetch Successfully`,
+      data: user,
+    };
 
   }
 
