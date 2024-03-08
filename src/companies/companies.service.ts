@@ -18,8 +18,13 @@ export class CompaniesService {
     return 'This action adds a new company';
   }
 
-  findAll() {
-    return this.companyRepository.find();
+  async findAll() {
+    const companies = await  this.companyRepository.find()
+    return {
+      status: true,
+      message: `Succesfully Fetch Companies `,
+      data: companies,
+    };
   }
 
   findOne(id: number) {
