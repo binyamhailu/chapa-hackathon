@@ -24,12 +24,9 @@ import { ShareSession } from './share-session/entities/share-session.entity';
         host: configService.get<string>('POSTGRES_HOST'),
         port: configService.get<number>('POSTGRES_PORT'),
         database: configService.get<string>('POSTGRES_DB'),
-        // host: "10.3.141.204",
-        // port: 5432,
-        // database: "mpesa_vybe",
-        username:configService.get<string>('POSTGRES_USER'),
-        password:configService.get<string>('POSTGRES_PASSWORD'),
-        entities: [User,Ownership,Company,ShareSession],
+        username: configService.get<string>('POSTGRES_USER'),
+        password: configService.get<string>('POSTGRES_PASSWORD'),
+        entities: [User, Ownership, Company, ShareSession],
         synchronize: true,
       }),
     }),
@@ -37,4 +34,4 @@ import { ShareSession } from './share-session/entities/share-session.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
